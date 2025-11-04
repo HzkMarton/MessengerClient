@@ -1,0 +1,19 @@
+﻿<Window x:Class="MessengerClient.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MessengerClient"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="500">
+    <Grid>
+        <TextBox x:Name="usernameLogin" HorizontalAlignment="Left" Margin="127,105,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="passwordLogin" HorizontalAlignment="Left" Margin="127,136,0,0" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="loginBtn" Content="Belépés" HorizontalAlignment="Left" Margin="202,159,0,0" VerticalAlignment="Top" Click="loginBtn_Click"/>
+        <TextBox x:Name="usernameRegistration" HorizontalAlignment="Left" Margin="313,105,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="passwordRegistration" HorizontalAlignment="Left" Margin="313,136,0,0" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="registrationBtn" Content="Regisztráció" HorizontalAlignment="Left" Margin="366,197,0,0" VerticalAlignment="Top" Click="registrationBtn_Click"/>
+        <TextBox x:Name="nickname" HorizontalAlignment="Left" Margin="314,169,0,0" TextWrapping="Wrap" Text="Becenév" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
