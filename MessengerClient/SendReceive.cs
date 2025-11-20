@@ -29,6 +29,7 @@ namespace MessengerClient
             public int UserID { get; set; }
             public string UUID { get; set; }
         }
+        public static bool UserAuthenticated = false;
         bool listen = true;
         private class MessageHandler //változtatás internal-ról!!!
         {
@@ -88,12 +89,13 @@ namespace MessengerClient
                     byte[] data = new byte[1024];
                     int length = stream.Read(data, 0, data.Length);
                     string d = Encoding.UTF8.GetString(data, 0, length);
-                    MessageBox.Show(d);
                     credentials = JsonSerializer.Deserialize<Credentials>(d);
-
+                    if (credentials.UUID != null)
+                    {
+                        UserAuthenticated = true;
+                    }
                     data = Crc32.Hash(Encoding.UTF8.GetBytes($"{credentials.UUID.Replace("-", "")}:{credentials.UserID}"));
                     stream.Write(data, 0, data.Length);
-                    MessageBox.Show(Encoding.UTF8.GetString(data));
                 }
                 } while (credentials.UUID == null);
             List<MessageHandler> messages = new List<MessageHandler>();
@@ -118,7 +120,6 @@ namespace MessengerClient
                         if (bytes == 0) throw new IOException("A hálozati kapcsolat le lett zárva az olvasás alatt");
                         read += bytes;
                     }
-                    MessageBox.Show(Encoding.UTF8.GetString(data, 0, length));
                     messages = JsonSerializer.Deserialize<List<MessageHandler>>(Encoding.UTF8.GetString(data, 0, length));
                     foreach (MessageHandler m in messages)
                     {

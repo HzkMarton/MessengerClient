@@ -34,8 +34,12 @@ namespace MessengerClient
             messageContainer = messageBubbleContainer;
             sendReceive = new SendReceive();
             scrollViewerForMessages = scrollViewerMessages;
-            Login l = new Login();
-            l.ShowDialog();
+            do
+            {
+                Login l = new Login();
+                l.ShowDialog();
+            } while (!SendReceive.UserAuthenticated);
+            
         }
         public static void AddBubble(string text, string nickname, bool isSelf)
         {
@@ -86,6 +90,7 @@ namespace MessengerClient
         }
         private void SendMessage(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtBox.Text)) return;
             SendReceive.Message = txtBox.Text;
             txtBox.Text = "";
         }

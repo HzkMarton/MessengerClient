@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MessengerClient"
         mc:Ignorable="d"
-        Title="Messeger" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="Messeger" Height="450" Width="600" ResizeMode="CanMinimize">
     <Window.Resources>
         <Style TargetType="Window">
             <Setter Property="FontFamily" Value="Trebuchet MS"></Setter>
@@ -29,23 +29,22 @@
         </Style>
     </Window.Resources>
     <Grid>
-        
-        <Border CornerRadius="15, 0, 15, 15" BorderThickness="1" Grid.Row="1" Grid.Column="1" Height="33" Margin="0,0,10,0" Padding="0" Panel.ZIndex="1" HorizontalAlignment="Right" Background="CadetBlue" MouseEnter="LightenBtn" MouseLeave="DarkenBtn">
+
+        <Border CornerRadius="15, 0, 15, 15" BorderThickness="1" Grid.Row="1" Height="33" Margin="0,0,10,0" Padding="0" Panel.ZIndex="1" HorizontalAlignment="Right" Background="CadetBlue" MouseEnter="LightenBtn" MouseLeave="DarkenBtn">
             <Button Content="Elküld" Name="Send" Click="SendMessage" BorderThickness="0" Foreground="White" Height="33" Width="80" Background="Transparent" FontSize="20" RenderTransformOrigin="1.053,0.275"/>
         </Border>
-        <Border CornerRadius="15, 0, 15, 15" BorderThickness="1" Background="#DCDCDC"  Grid.Row="1" Grid.Column="1" Height="33" Margin="10,0,10,0" Padding="3">
+        <Border CornerRadius="15, 0, 15, 15" BorderThickness="1" Background="#DCDCDC"  Grid.Row="1" Height="33" Margin="10,0,10,0" Padding="3">
             <TextBox Name="txtBox" HorizontalAlignment="Stretch" BorderThickness="0" TextWrapping="Wrap" VerticalAlignment="Center" RenderTransformOrigin="1.446,2.99" Height="33" FontSize="20" Padding="0,0,80,0" Background="Transparent" KeyDown="txtBox_KeyDown"/>
         </Border>
-        <ScrollViewer x:Name="scrollViewerMessages" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="scrollViewerMessages" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" Margin="0,20,0,0" Panel.ZIndex="1">
             <StackPanel x:Name="messageBubbleContainer">
+                <AccessText Text="Üzenetek helye" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="Gray"/>
             </StackPanel>
         </ScrollViewer>
-        <TextBlock Name="txtBlock" HorizontalAlignment="Left" Margin="32,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="301" Width="229"/>
-        <Label Grid.Row="0" Grid.Column="0" Content="Messager" HorizontalAlignment="Left" FontSize="30"></Label>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="33*"></ColumnDefinition>
-            <ColumnDefinition Width="67*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        <Border Background="White" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="2">
+        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="/assets/logo.png"/>
+        </Border>
+        <Label Content="Messager" HorizontalAlignment="Left" FontSize="30" Height="50px" VerticalAlignment="Top" Background="#FFFFFF" Width="135" Margin="50,0,0,0" Panel.ZIndex="2"/>
         <Grid.RowDefinitions>
             <RowDefinition Height="85*"></RowDefinition>
             <RowDefinition Height="15*"></RowDefinition>

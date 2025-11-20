@@ -5,15 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MessengerClient"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="500">
+        Title="Login" Height="300" Width="500">
     <Grid>
-        <TextBox x:Name="usernameLogin" HorizontalAlignment="Left" Margin="127,105,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="passwordLogin" HorizontalAlignment="Left" Margin="127,136,0,0" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="loginBtn" Content="Belépés" HorizontalAlignment="Left" Margin="202,159,0,0" VerticalAlignment="Top" Click="loginBtn_Click"/>
-        <TextBox x:Name="usernameRegistration" HorizontalAlignment="Left" Margin="313,105,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="passwordRegistration" HorizontalAlignment="Left" Margin="313,136,0,0" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="registrationBtn" Content="Regisztráció" HorizontalAlignment="Left" Margin="366,197,0,0" VerticalAlignment="Top" Click="registrationBtn_Click"/>
-        <TextBox x:Name="nickname" HorizontalAlignment="Left" Margin="314,169,0,0" TextWrapping="Wrap" Text="Becenév" VerticalAlignment="Top" Width="120"/>
-
+        <StackPanel x:Name="Bejelentkezes" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Bejelentkezés" FontSize="24" HorizontalAlignment="Center" Width="160" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="usernameLogin" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Center" Width="150" FontSize="20" Margin="10" GotFocus="Fokusz" LostFocus="FFokusz"/>
+            <TextBox x:Name="passwordLogin" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Center" Width="150" FontSize="20" GotFocus="Fokusz" LostFocus="JFokusz"/>
+            <Button x:Name="Valtas" BorderThickness="0" 
+            Cursor="Hand"
+            Padding="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" Click="Valtozatatas" Background="Transparent">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+            Background="{TemplateBinding Background}"
+            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock TextDecorations="Underline" Foreground="Blue">
+                Regisztráció
+                </TextBlock>
+            </Button>
+            <Border CornerRadius="15" BorderThickness="1" Padding="0" Background="CadetBlue" Height="40">
+                <Button x:Name="loginBtn" Content="Belépés" Width="150" Click="loginBtn_Click" FontSize="20" Background="Transparent" BorderThickness="0" Foreground="White" Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" 
+            Background="{TemplateBinding Background}"
+            Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Border>
+        </StackPanel>
+        <StackPanel x:Name="Regisztracio" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <Label Content="Regisztráció" FontSize="24" HorizontalAlignment="Center" Width="160" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="usernameRegistration" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Center" Width="150" FontSize="20" GotFocus="Fokusz" LostFocus="FFokusz"/>
+            <TextBox Grid.RowSpan="2" x:Name="passwordRegistration" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Center" Width="150" FontSize="20" Margin="10" GotFocus="Fokusz" LostFocus="JFokusz"/>
+            <TextBox x:Name="nickname" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Becenév" VerticalAlignment="Center" Width="150" FontSize="20" GotFocus="Fokusz" LostFocus="BFokusz" />
+            <Button BorderThickness="0" 
+            Cursor="Hand"
+            Padding="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Click="Valtozatatas" Background="Transparent">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock TextDecorations="Underline" Foreground="Blue">
+                Bejelentkezés
+                </TextBlock>
+            </Button>
+            <Border CornerRadius="15" BorderThickness="1" Padding="0" Background="CadetBlue">
+                <Button x:Name="registrationBtn" Content="Regisztráció" Click="registrationBtn_Click" Width="150" FontSize="20" Margin="5" Foreground="White" BorderThickness="0" Background="Transparent" Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" 
+            Background="{TemplateBinding Background}"
+            Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>

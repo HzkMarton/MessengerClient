@@ -19,6 +19,8 @@ namespace MessengerClient
     /// </summary>
     public partial class Login : Window
     {
+        public event EventHandler Authenticated;
+
         public Login()
         {
             InitializeComponent();
@@ -30,6 +32,10 @@ namespace MessengerClient
             SendReceive.User.Password = passwordLogin.Text;
             SendReceive.User.IsLogin = true;
             SendReceive.SendCredentials();
+            do
+            {
+            } while (!SendReceive.UserAuthenticated);
+            this.Close();
         }
 
         private void registrationBtn_Click(object sender, RoutedEventArgs e)
@@ -39,6 +45,52 @@ namespace MessengerClient
             SendReceive.User.Nickname = nickname.Text;
             SendReceive.User.IsLogin = false;
             SendReceive.SendCredentials();
+            registrationBtn.IsEnabled = false;
+            do
+            {
+            } while (!SendReceive.UserAuthenticated);
+            this.Close();
+        }
+
+        private void Valtozatatas(object sender, RoutedEventArgs e)
+        {
+            if (Bejelentkezes.Visibility == Visibility.Visible)
+            {
+                Bejelentkezes.Visibility = Visibility.Collapsed;
+                Regisztracio.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Bejelentkezes.Visibility = Visibility.Visible;
+                Regisztracio.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Fokusz(object sender, RoutedEventArgs e)
+        {
+            var txt = (TextBox)sender;
+            if (txt != null)
+            {
+                txt.Text = string.Empty;
+            }
+        }
+
+        private void FFokusz(object sender, RoutedEventArgs e)
+        {
+            var txt = (TextBox)sender;
+            if (string.IsNullOrEmpty(txt.Text)) txt.Text = "Felhasználónév";
+        }
+
+        private void JFokusz(object sender, RoutedEventArgs e)
+        {
+            var text = (TextBox)sender;
+            if (string.IsNullOrEmpty(text.Text)) text.Text = "Jelszó";
+        }
+
+        private void BFokusz(object sender, RoutedEventArgs e)
+        {
+            var text = (TextBox)sender;
+            if (string.IsNullOrEmpty(text.Text)) text.Text = "Becenév";
         }
     }
 }
