@@ -10,7 +10,7 @@
         <StackPanel x:Name="Bejelentkezes" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Bejelentkezés" FontSize="24" HorizontalAlignment="Center" Width="160" VerticalAlignment="Bottom"/>
             <TextBox x:Name="usernameLogin" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Center" Width="150" FontSize="20" Margin="10" GotFocus="Fokusz" LostFocus="FFokusz"/>
-            <TextBox x:Name="passwordLogin" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Center" Width="150" FontSize="20" GotFocus="Fokusz" LostFocus="JFokusz"/>
+            <TextBox x:Name="passwordLogin" HorizontalAlignment="Center" Text="Jelszó" VerticalAlignment="Center" Width="150" FontSize="20" GotFocus="Fokusz" LostFocus="JFokusz"/>
             <Button x:Name="Valtas" BorderThickness="0" 
             Cursor="Hand"
             Padding="5"
@@ -37,7 +37,8 @@
                 Regisztráció
                 </TextBlock>
             </Button>
-            <Border CornerRadius="15" BorderThickness="1" Padding="0" Background="CadetBlue" Height="40">
+            <Label Foreground="Red" x:Name="helytelenLabel" Content="Helytelen azonosító!" HorizontalAlignment="Center" FontSize="10" Visibility="Hidden"></Label>
+            <Border CornerRadius="15" BorderThickness="1" Padding="0" Background="CadetBlue" Height="40" x:Name="loginBorder">
                 <Button x:Name="loginBtn" Content="Belépés" Width="150" Click="loginBtn_Click" FontSize="20" Background="Transparent" BorderThickness="0" Foreground="White" Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -91,7 +92,7 @@
                 Bejelentkezés
                 </TextBlock>
             </Button>
-            <Border CornerRadius="15" BorderThickness="1" Padding="0" Background="CadetBlue">
+            <Border CornerRadius="15" BorderThickness="1" Padding="0" Background="CadetBlue" x:Name="registrationBorder">
                 <Button x:Name="registrationBtn" Content="Regisztráció" Click="registrationBtn_Click" Width="150" FontSize="20" Margin="5" Foreground="White" BorderThickness="0" Background="Transparent" Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">

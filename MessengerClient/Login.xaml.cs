@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,36 +21,50 @@ namespace MessengerClient
     public partial class Login : Window
     {
         public event EventHandler Authenticated;
-
+        public static Label hiba;
         public Login()
         {
             InitializeComponent();
+            hiba = this.helytelenLabel;
         }
-
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        public static void Helytelen()
         {
+            hiba.Visibility = Visibility.Visible;
+        }
+        private async void loginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            loginBtn.IsEnabled = false;
+            loginBorder.Background = Brushes.LightGray;
             SendReceive.User.Username = usernameLogin.Text;
             SendReceive.User.Password = passwordLogin.Text;
             SendReceive.User.IsLogin = true;
+            Button b = sender as Button;
             SendReceive.SendCredentials();
-            do
+            await Task.Delay(4000);
+            if (SendReceive.UserAuthenticated)this.Close();
+            else
             {
-            } while (!SendReceive.UserAuthenticated);
-            this.Close();
+                loginBtn.IsEnabled = true;
+                loginBorder.Background = Brushes.CadetBlue;
+            }
         }
 
-        private void registrationBtn_Click(object sender, RoutedEventArgs e)
+        private async void registrationBtn_Click(object sender, RoutedEventArgs e)
         {
+            registrationBtn.IsEnabled = false;
+            registrationBorder.Background = Brushes.LightGray;
             SendReceive.User.Username = usernameRegistration.Text;
             SendReceive.User.Password = passwordRegistration.Text;
             SendReceive.User.Nickname = nickname.Text;
             SendReceive.User.IsLogin = false;
             SendReceive.SendCredentials();
-            registrationBtn.IsEnabled = false;
-            do
+            await Task.Delay(4000);
+            if (SendReceive.UserAuthenticated) this.Close();
+            else
             {
-            } while (!SendReceive.UserAuthenticated);
-            this.Close();
+                registrationBtn.IsEnabled = true;
+                registrationBorder.Background = Brushes.CadetBlue;
+            }
         }
 
         private void Valtozatatas(object sender, RoutedEventArgs e)

@@ -93,9 +93,17 @@ namespace MessengerClient
                     if (credentials.UUID != null)
                     {
                         UserAuthenticated = true;
+                        data = Crc32.Hash(Encoding.UTF8.GetBytes($"{credentials.UUID.Replace("-", "")}:{credentials.UserID}"));
+                        stream.Write(data, 0, data.Length);
                     }
-                    data = Crc32.Hash(Encoding.UTF8.GetBytes($"{credentials.UUID.Replace("-", "")}:{credentials.UserID}"));
-                    stream.Write(data, 0, data.Length);
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            Login.Helytelen();
+                        });
+                    }
+                    
                 }
                 } while (credentials.UUID == null);
             List<MessageHandler> messages = new List<MessageHandler>();
